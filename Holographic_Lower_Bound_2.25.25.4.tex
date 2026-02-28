@@ -1,0 +1,669 @@
+\documentclass[12pt,letterpaper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage[numbers,sort&compress]{natbib}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue
+}
+
+% ── Custom commands ───────────────────────────────────────────────────────────
+\newcommand{\Mpl}{M_{\mathrm{Pl}}}
+\newcommand{\lpl}{\ell_P}
+\newcommand{\Nmin}{N_{\min}}
+\newcommand{\rhow}{\rho_w}
+\newcommand{\rhowmin}{\rho_{w,\min}}
+\newcommand{\Nefolds}{N_e}
+\newcommand{\Ne}{N_e}
+\newcommand{\dS}{\mathrm{dS}}
+\newcommand{\CFT}{\mathrm{CFT}}
+\newcommand{\LCDM}{\Lambda\mathrm{CDM}}
+
+% Equation number alignment
+\numberwithin{equation}{section}
+
+% ── Title block ───────────────────────────────────────────────────────────────
+\title{A Holographic Lower Bound on Primordial Boundary Entropy:\\
+Decoherence Threshold, CMB Power Deficit, and a LiteBIRD Test}
+
+\author{Charles Smith\\[4pt]
+\small Independent Researcher\\
+\small \href{mailto:charlesgrantsmith@gmail.com}{charlesgrantsmith@gmail.com}}
+
+\date{February 25, 2026}
+
+% ── Document ──────────────────────────────────────────────────────────────────
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+% ── Abstract ──────────────────────────────────────────────────────────────────
+\begin{abstract}
+We derive a minimum boundary entropy $\Nmin \sim e^{2\Ne} \sim 10^{52}$
+for single-field slow-roll inflation with $\Ne \geq 60$ e-folds, using two
+standard holographic axioms: the Bekenstein--Hawking area bound~(G1) and the
+inflationary viability constraint~(G2). No free parameters and no bulk physics
+assumptions are required beyond a threshold normalization defined in
+Section~\ref{sec:threshold}. The derivation yields a holographic
+information-flux threshold
+$\rhowmin = H^2/(4\pi \Mpl^2)$ below which the boundary lacks sufficient
+independent degrees of freedom to sustain classical geometry across a causally
+connected region. This threshold does not manifest as a sharp power-spectrum
+cutoff but as a power deficit concentrated at the largest observable CMB scales
+($\ell \lesssim 10$), where boundary entropy was nearest to $\Nmin$ during the
+first observable e-folds of inflation. The predicted deficit is consistent with
+the ${\sim}10\%$ quadrupole--octopole suppression observed in Planck~2018 at
+$2$--$3\sigma$ significance. The framework makes a directional prediction: this
+anomaly will deepen rather than wash out in LiteBIRD E-mode polarization data
+(2030 launch). If the anomaly weakens with improved data, the holographic
+decoherence-threshold interpretation is falsified.
+\end{abstract}
+
+\newpage
+\setcounter{page}{1}
+
+% ── Section 1 ─────────────────────────────────────────────────────────────────
+\section{Introduction}
+
+The Bekenstein--Hawking area bound establishes that the maximum information
+content of any region is proportional to its boundary area rather than its
+volume~\cite{Bekenstein1973,Hawking1975}. This result, and its precise
+realization in the Ryu--Takayanagi formula~\cite{RyuTakayanagi2006}, implies
+that the 2D boundary surface is not a mathematical convenience but the locus at
+which physical information is encoded. Standard treatments of single-field
+slow-roll inflation are, however, agnostic about the boundary: the inflaton
+field dynamics are described entirely within the 3D bulk, and the boundary is
+assigned no active role in generating or constraining primordial perturbations.
+
+In this letter we ask a question that the area bound makes natural but that
+has not, to our knowledge, been addressed directly: \emph{what is the minimum
+number of boundary degrees of freedom that must be populated during inflation
+for classical geometry to persist coherently across a Hubble e-fold?}
+
+The answer is not a free parameter (modulo the threshold normalization
+discussed in Section~\ref{sec:threshold}). It follows from two standard
+axioms---the holographic area bound and the inflationary viability
+constraint---without invoking any bulk field dynamics, any specific inflaton
+model, or any new physics.
+
+The derivation yields a minimum boundary entropy $\Nmin \sim 10^{52}$ and a
+corresponding holographic information-flux threshold $\rhowmin$. Below this
+threshold, the boundary lacks sufficient independent degrees of freedom to
+sustain stable decoherence patterns across the corresponding bulk region. The
+observable consequence is not a sharp cutoff in the primordial power
+spectrum---the mode that exits the horizon at the onset of the observable
+inflationary window lies far outside the accessible range---but a power deficit
+concentrated at the largest accessible scales, where boundary entropy was
+closest to $\Nmin$. This is precisely the regime of the Planck~2018
+quadrupole--octopole anomaly.
+
+Section~\ref{sec:axioms} defines the axioms and information-flux density.
+Section~\ref{sec:derivation} derives $\Nmin$ and $\rhowmin$.
+Section~\ref{sec:cmb} connects the threshold to the CMB power spectrum.
+Section~\ref{sec:related} situates the result relative to existing approaches.
+Section~\ref{sec:litebird} states the LiteBIRD falsification prediction.
+Section~\ref{sec:discussion} discusses limitations.
+
+% ── Section 2 ─────────────────────────────────────────────────────────────────
+\section{Axioms and Setup}
+\label{sec:axioms}
+
+The derivation rests on two axioms, both standard results in holographic
+gravity and inflationary cosmology.
+
+\subsection*{Axiom G1: Finite Holographic Capacity}
+
+The holographic entropy bound states that the maximum number of independent
+degrees of freedom encoding the state of a region is bounded by its boundary
+area in Planck units~\cite{Bekenstein1973,Hawking1975,Bousso2002}:
+\begin{equation}
+  N \leq \frac{A}{4\lpl^2} = \frac{A}{4 G_N \hbar},
+  \label{eq:G1}
+\end{equation}
+where $A$ is the boundary area, $\lpl = (\hbar G_N/c^3)^{1/2}$ is the Planck
+length, and we hereafter work in units where $\lpl = 1$. We use this bound as
+an equality at maximum occupation, consistent with the Bekenstein--Hawking
+formula for black hole entropy. The minimum nonzero boundary area permitted by
+G1 is $A_0 = \lpl^2 = 1$ (one Planck cell), corresponding to a single boundary
+degree of freedom.
+
+\subsection*{Axiom G2: Inflationary Viability Constraint}
+
+The horizon and flatness problems require a minimum of $\Ne \geq 60$ e-folds of
+inflationary expansion~\cite{Guth1981,Linde1982}. We treat this as a
+self-consistency condition: any inflationary framework that does not satisfy
+$\Ne \geq 60$ fails to solve the problems inflation was proposed to solve. This
+is a phenomenological viability constraint rather than a holographic axiom, but
+it is equally indispensable to the derivation.
+
+\subsection*{Holographic Information-Flux Density}
+
+We define the boundary information-flux density $\rhow$ as the number of
+distinct decoherence interactions per Planck-area cell on the boundary per
+Hubble time $H^{-1}$. In a holographic framework, a decoherence event in the
+bulk corresponds to a mutual-information exchange that writes an irreversible
+record to the boundary~\cite{VanRaamsdonk2010}. The information-flux density is
+therefore the rate at which boundary degrees of freedom are being excited per
+unit area per unit time.
+
+% ── Section 3 ─────────────────────────────────────────────────────────────────
+\section{Derivation of \texorpdfstring{$\Nmin$}{N\_min} and the Decoherence Threshold}
+\label{sec:derivation}
+
+\subsection{Boundary area scaling during inflation}
+
+During slow-roll inflation the scale factor grows as $a(t) \sim e^{Ht}$, so
+over $\Ne$ e-folds the linear dimension of the cosmological boundary scales as
+$a_{\mathrm{end}}/a_{\mathrm{start}} = e^{\Ne}$. Since surface area scales as
+the square of the linear dimension:
+\begin{equation}
+  \frac{A_{\mathrm{end}}}{A_{\mathrm{start}}} = e^{2\Ne}.
+  \label{eq:area_scaling}
+\end{equation}
+From G1, the number of independent boundary degrees of freedom scales
+identically with area in Planck units, so the entropy ratio is also
+$e^{2\Ne}$.
+
+\subsection{Minimum boundary entropy count}
+
+The minimum initial boundary consistent with G1 is
+$A_0 = \lpl^2 = 1$---one Planck cell encoding a single degree of freedom.
+This is the smallest physically meaningful boundary: any boundary with
+$A < \lpl^2$ has zero capacity under G1 and corresponds to the pre-inflationary
+state. We note, however, that setting $A_{\mathrm{start}}$ exactly equal to
+this absolute minimum is an assumption of convenience rather than a derived
+result; physically motivated initial conditions may require a larger value
+(see Section~\ref{sec:discussion}).
+
+The total number of new boundary degrees of freedom populated during $\Ne$
+e-folds is:
+\begin{equation}
+  \Delta N = \frac{A_{\mathrm{end}} - A_{\mathrm{start}}}{\lpl^2}.
+  \label{eq:DeltaN}
+\end{equation}
+Substituting $A_{\mathrm{start}} = A_0 = 1$ and $\Ne = 60$:
+\begin{equation}
+  \Delta N_{\min} = e^{2 \times 60} - 1 = e^{120} - 1 \approx e^{120}.
+  \label{eq:Nmin_value}
+\end{equation}
+
+\medskip
+\noindent\fbox{\parbox{0.94\linewidth}{%
+\textbf{Key result.}\quad
+$\Nmin = e^{2\Ne} \approx e^{120} \approx 10^{52}$.
+This is the minimum boundary entropy required for 60 e-folds of slow-roll
+inflation. It follows from G1 and G2 alone, with no inflaton potential, no bulk
+field dynamics, and no free parameters beyond the threshold normalization
+described in Section~\ref{sec:threshold}.}}
+\medskip
+
+\subsection{The holographic information-flux threshold}
+\label{sec:threshold}
+
+Classical geometry within a Hubble patch requires that the boundary
+information-flux density sustains at least one stable decoherence interaction
+across the boundary cells of that patch per Hubble time. We emphasize that the
+choice of ``one'' interaction as the threshold normalization is a definition,
+not a derived result; requiring $n$ interactions raises $\rhowmin$ by a factor
+of $n$. The result below should therefore be understood as a lower bound whose
+absolute normalization carries a free parameter of order unity. The number of
+Planck-area cells on the boundary of a Hubble-radius sphere is:
+\begin{equation}
+  N_{\mathrm{horizon}} = 4\pi\!\left(\frac{\Mpl}{H}\right)^{\!2}.
+  \label{eq:Nhorizon}
+\end{equation}
+The minimum information-flux density for classical coherence is therefore:
+\begin{equation}
+  \rhowmin = \frac{1}{N_{\mathrm{horizon}}} = \frac{H^2}{4\pi \Mpl^2}.
+  \label{eq:rhow_min}
+\end{equation}
+During slow-roll, $H^2 = V(\varphi)/(3\Mpl^2)$, giving:
+\begin{equation}
+  \rhowmin = \frac{V(\varphi)}{12\pi \Mpl^4}.
+  \label{eq:rhow_V}
+\end{equation}
+Below this density, the boundary cannot maintain stable, mutually consistent
+decoherence patterns across the cells of a single Hubble patch. In the
+effective bulk description, this corresponds to a suppression of the classical
+mode amplitude relative to the Bunch--Davies prediction.
+
+\subsection{Boundary radius: from initial state to present}
+
+An independent calculation derives the physical boundary radius at $t = 0$ and
+at the present epoch using only the Bekenstein--Hawking relation.
+
+From G1, the boundary area encodes $N$ bits at 1 bit per $4\lpl^2$:
+\begin{equation}
+  A = 4N\lpl^2, \qquad
+  r = \sqrt{\frac{A}{4\pi}} = \lpl\sqrt{\frac{N}{\pi}}.
+  \label{eq:r_from_N}
+\end{equation}
+
+\paragraph{Initial radius.}
+For the absolute minimum $N = 1$ bit:
+\begin{equation}
+  r_{\min}(1\;\text{bit}) = \frac{\lpl}{\sqrt{\pi}} \approx 9.1 \times 10^{-36}\;\text{m}.
+  \label{eq:r0_1bit}
+\end{equation}
+A more physical lower bound uses the minimum bit count required to specify the
+fundamental parameters of a physical theory---equivalent to the algorithmic
+description length of the Standard Model plus general relativity. Estimates for
+this parameter count yield approximately 1000 bits~\cite{Bousso2002}, implying
+${\sim}4000$ Planck areas:
+\begin{equation}
+  r_{\min}(1000\;\text{bits}) = \lpl\sqrt{\frac{1000}{\pi}} \approx 18\,\lpl
+  \approx 2.9 \times 10^{-34}\;\text{m}.
+  \label{eq:r0_1000bit}
+\end{equation}
+The initial radius lies in the range $r_0 \in [1, 18]\,\lpl$.
+
+\paragraph{Current radius.}
+The de~Sitter entropy $S_{\dS} \sim 3 \times 10^{122}$ bits, derived from
+$S_{\dS} = 3\pi \Mpl^2/\Lambda$ using the observed cosmological constant
+$\Lambda$~\cite{Bousso1999}, gives:
+\begin{equation}
+  r_{\mathrm{now}} = \lpl\sqrt{\frac{S_{\dS}}{\pi}}
+  \approx 1.58 \times 10^{26}\;\text{m} \approx 16.7\;\text{Gly}.
+  \label{eq:r_now}
+\end{equation}
+This matches the cosmological event horizon (${\sim}16\;\text{Gly}$), not the
+particle horizon (${\sim}46\;\text{Gly}$). The correspondence was noted by
+Susskind and Lindesay~\cite{SusskindLindesay2005} and formalized by
+Bousso~\cite{Bousso1999}. What is new here is the mechanism: the boundary is
+the future causal limit of decoherence events---precisely the event horizon's
+definition---consistent with dS/CFT placing the dual theory on the future
+conformal boundary $\mathcal{I}^+$~\cite{Strominger2001}.
+
+The area growth factor $(r_{\mathrm{now}}/r_0)^2 \sim 3 \times 10^{119}$ is
+consistent with the entropy growth factor $S_{\dS}/S_0 \sim 3 \times 10^{119}$,
+confirming that entropy scales with area throughout the cosmological history.
+
+\paragraph{Non-singularity corollary.}
+A boundary of zero area has zero information capacity under G1. The initial
+state was therefore a finite sphere of radius $r_0 \in [1,18]\,\lpl$, not a
+point, and a geometric singularity is excluded by G1. We note, however, that
+this argument operates at the level of the boundary information capacity and
+does not directly constrain the bulk curvature scalar, whose regularity
+requires the full bulk-boundary dictionary. Subject to that caveat, the result
+is consistent with the Hartle--Hawking no-boundary proposal~\cite{HartleHawking1983}
+and loop quantum cosmology~\cite{Bojowald2001,Ashtekar2006}, but derived here
+from holographic information capacity alone. If $r_0 \sim 18\,\lpl$, the
+minimum observable mode wavelength is $2\pi r_0 \sim 113\,\lpl$---above the
+Planck scale, partially resolving the trans-Planckian
+problem~\cite{MartinBrandenberger2001} at its most acute point.
+
+% ── Section 4 ─────────────────────────────────────────────────────────────────
+\section{The CMB Power Spectrum Signature}
+\label{sec:cmb}
+
+\subsection{Why there is no sharp \texorpdfstring{$k_{\min}$}{k\_min} cutoff}
+
+The mode that exits the Hubble horizon at the onset of the observable
+inflationary window has wavenumber
+$k_{\mathrm{onset}} \sim k_* e^{-N_*}$
+where $k_* \sim 0.05\;\text{Mpc}^{-1}$ is the CMB pivot scale and
+$N_* \approx 55$. This gives:
+\begin{equation}
+  k_{\mathrm{onset}} \sim 10^{-25}\;\text{Mpc}^{-1},
+  \label{eq:k_onset}
+\end{equation}
+far below the present Hubble scale $k_H \sim 2 \times 10^{-4}\;\text{Mpc}^{-1}$.
+This mode is causally inaccessible. The decoherence threshold does not manifest
+as a sharp spectral cutoff.
+
+\subsection{Where the effect is observable}
+
+The observable effect is a soft deficit at the largest accessible scales. Modes
+at $\ell \sim 2$--$5$ exited the horizon earliest within the observable window,
+when the instantaneous boundary entropy density was closest to $\rhowmin$.
+These modes experienced the weakest classical coherence. We distinguish here
+between the cumulative boundary entropy $\Nmin$ derived in
+Section~\ref{sec:derivation} (integrated over 60 e-folds) and the
+instantaneous boundary entropy density at each mode-crossing time, which is the
+physically relevant quantity for the power deficit. The following relation is an
+\emph{ansatz}, pending a complete dS/CFT dictionary (see
+Section~\ref{sec:discussion}):
+\begin{equation}
+  \frac{\Delta P}{P} \sim 1 - \frac{\rhow(N_{\mathrm{exit}})}{\rhow^{\mathrm{ref}}},
+  \label{eq:deficit}
+\end{equation}
+where $\rhow(N_{\mathrm{exit}})$ is the information-flux density at the mode's
+horizon-crossing time and $\rhow^{\mathrm{ref}}$ is the information-flux density
+at the pivot scale. Since $\rhow \sim H^2 \sim V(\varphi)$ and the potential is
+nearly flat during slow-roll, the deficit is small, concentrated at the lowest
+multipoles, and monotonically decreasing toward $\ell \sim 10$.
+
+\subsection{Consistency with Planck 2018}
+
+The Planck 2018 temperature power spectrum shows a ${\sim}10\%$ deficit at
+$\ell = 2$ and $\ell = 3$ relative to the best-fit $\LCDM$ spectrum~\cite{Planck2020_PS}.
+This quadrupole--octopole suppression has persisted across all Planck data
+releases at $2$--$3\sigma$ significance. The hemispherical power asymmetry and
+anomalous quadrupole--octopole alignment also lie in this
+regime~\cite{Planck2020_isotropy,Copi2007}.
+
+$\LCDM$ attributes these features to cosmic variance. The holographic threshold
+offers a structural account: the $\ell = 2, 3$ modes exited the horizon when
+boundary entropy was at its minimum within the observable window. A
+deficit---not an excess---is the directional prediction. The two accounts make
+distinguishable predictions:
+
+\medskip
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+& $\LCDM$ & Holographic threshold \\
+\midrule
+$\ell=2,3$ deficit      & Statistical fluctuation & Structural: boundary at $\Nmin$ \\
+E-mode at $\ell=2,3$    & Deficit weakens         & Deficit persists/deepens \\
+TE correlation          & No prediction           & Correlated suppression \\
+Isotropy violation      & Approximate             & Structural \\
+Deficit at $\ell=2$     & Arbitrary               & Set by $\rhow/\rhowmin$ at crossing \\
+\bottomrule
+\end{tabular}
+\end{center}
+\medskip
+
+% ── Section 5 ─────────────────────────────────────────────────────────────────
+\section{Relation to Existing Approaches}
+\label{sec:related}
+
+\paragraph{Trans-Planckian problem.}
+Brandenberger and Martin~\cite{MartinBrandenberger2001} identified that
+observable CMB modes had sub-Planckian wavelengths at the start of inflation.
+The present approach differs in three respects: (i)~the threshold derives from
+the holographic boundary, not from sub-Planckian bulk dynamics; (ii)~$\Nmin$
+bounds boundary entropy, not mode wavelengths; (iii)~the deficit appears even
+with standard Bunch--Davies initial conditions.
+
+\paragraph{Excited initial states.}
+Danielsson~\cite{Danielsson2002} and Kaloper et al.~\cite{Kaloper2002}
+considered non-Bunch--Davies states as sources of large-angle features. These
+introduce free parameters (the deviation from Bunch--Davies) that must be fit
+to data. The holographic threshold normalization is an order-unity parameter
+fixed by the threshold definition, whereas the functional form of $\Nmin$ is
+fixed by G1 and G2.
+
+\paragraph{Power suppression models.}
+Several authors have proposed power-spectrum cutoffs to explain large-angle
+anomalies~\cite{Contaldi2003,Rajaraman2008}. These introduce a sharp cutoff
+scale $k_{\mathrm{cut}}$ as a free parameter. The present approach predicts a
+soft deficit---not a sharp cutoff---because the information-flux density varies
+continuously. The deficit is maximal at $\ell = 2$ and diminishes smoothly
+toward $\ell \sim 10$.
+
+\paragraph{Hollands and Wald.}
+Hollands and Wald~\cite{HollandsWald2002} argued that the standard measure on
+inflationary initial conditions is problematic, suggesting large-angle
+suppression may reflect fine-tuning. The decoherence threshold is related but
+distinct: rather than a measure problem, we identify a minimum boundary entropy
+below which the initial state cannot sustain classical geometry, regardless of
+the measure chosen.
+
+% ── Section 6 ─────────────────────────────────────────────────────────────────
+\section{The LiteBIRD Prediction}
+\label{sec:litebird}
+
+The framework makes a specific, directional, near-term falsifiable prediction:
+the existing Planck 2018 low-$\ell$ anomalies will deepen rather than wash out
+in E-mode polarization data. If the deficit is a physical imprint of the
+boundary entropy gradient, E-mode measurements of the same modes provide an
+independent sample that reduces cosmic variance, and a structural signal should
+persist or strengthen.
+
+\paragraph{LiteBIRD sensitivity.}
+LiteBIRD~\cite{LiteBIRD2023}, planned for 2030 launch, will measure large-angle
+E-mode polarization to noise levels
+$\sigma(C_\ell^{EE})/C_\ell^{EE} \sim 15\%$ at $\ell = 2$--$3$. This is
+sufficient to distinguish, at approximately $2\sigma$, between the two scenarios
+at the observed deficit magnitude (${\sim}10\%$). CMB-S4~\cite{CMBS4} provides
+a secondary test.
+
+\paragraph{Falsification criteria.}
+The framework predicts:
+\begin{itemize}
+  \item[A.] E-mode power at $\ell = 2, 3$ shows a deficit consistent with the
+    T-mode suppression.
+  \item[B.] TE cross-correlation at $\ell = 2, 3$ reflects correlated
+    suppression.
+  \item[C.] The deficit is monotonically decreasing from $\ell = 2$ toward
+    $\ell \sim 10$.
+\end{itemize}
+The framework is disfavored if E-mode power at $\ell = 2, 3$ is consistent with
+$\LCDM$ and the T-mode deficit shows no correlated E-mode structure. This is a
+clean falsification criterion. It does not require the deficit magnitude to
+match a specific value (which requires the dS/$\CFT$ dictionary). It requires
+only directional persistence: if the structural cause is real, it must appear
+in polarization independently of temperature.
+
+% ── Section 7 ─────────────────────────────────────────────────────────────────
+\section{Discussion and Limitations}
+\label{sec:discussion}
+
+\paragraph{What the derivation assumes.}
+The derivation uses G1 and G2 and no other inputs beyond the threshold
+normalization discussed in Section~\ref{sec:threshold}. It does not assume a
+specific inflaton potential, a specific initial state, a specific bulk field
+content, or any dS/$\CFT$ correspondence. The information-flux threshold
+\eqref{eq:rhow_min} additionally requires that classical geometry is
+operationally defined as the existence of at least one stable decoherence
+interaction per Hubble patch per Hubble time. This normalization is
+conservative: requiring more than one event raises $\rhowmin$, strengthening
+the prediction.
+
+\paragraph{The minimum initial boundary.}
+We set $A_{\mathrm{start}} = \lpl^2$. If the actual initial boundary is larger,
+$\Nmin$ is larger still:
+$\Nmin = (A_{\mathrm{start}}/\lpl^2)\times e^{2\Ne}$.
+The value $10^{52}$ is therefore a lower bound. A physically motivated initial
+condition might correspond to a Hubble-radius boundary at the onset of
+inflation, which would substantially increase $\Nmin$.
+
+\paragraph{Independence from inflaton model.}
+The derivation does not require the holographic projection factor
+$\alpha = \sqrt{2/3}$ that enters the Starobinsky potential in more complete
+holographic frameworks. The $\Nmin$ result is independent of the inflaton
+model. The CMB falsification prediction of Section~\ref{sec:litebird} is
+therefore robust to uncertainty about the specific inflationary mechanism.
+
+\paragraph{Distinction between cumulative and instantaneous boundary entropy.}
+$\Nmin \sim e^{120}$ is the cumulative number of boundary degrees of freedom
+populated across 60 e-folds. The power deficit in Eq.~\eqref{eq:deficit} is
+sourced by the instantaneous boundary entropy density at each mode-crossing
+time, not by the cumulative count. These are related but distinct quantities.
+A complete treatment requires computing the instantaneous occupation as a
+function of the number of e-folds remaining, which in turn requires the
+dS/$\CFT$ dictionary referenced below.
+
+\paragraph{What remains to be derived.}
+The precise deficit magnitude at $\ell = 2$ in Eq.~\eqref{eq:deficit} requires
+$\rhow(N_{\mathrm{exit}})/\rhow^{\mathrm{ref}}$ computed from boundary degrees
+of freedom at each mode-crossing time. This requires a complete dS/$\CFT$
+dictionary---a mapping between boundary decoherence events and bulk scalar
+perturbations---that does not yet exist~\cite{Strominger2001,VanRaamsdonk2010}.
+The current result establishes the direction (deficit, not excess) and the
+mechanism (boundary entropy gradient). The magnitude awaits the dS/$\CFT$
+dictionary.
+
+% ── Section 8 ─────────────────────────────────────────────────────────────────
+\section{Conclusion}
+
+We have derived a minimum boundary entropy $\Nmin \sim e^{120} \sim 10^{52}$
+from two standard holographic axioms---the Bekenstein--Hawking area bound~(G1)
+and the inflationary viability constraint~(G2)---without assuming any bulk
+physics, any inflaton model, or any additional free parameters beyond a
+threshold normalization of order unity. Below this threshold, the boundary
+information-flux density is insufficient to sustain classical geometry across a
+Hubble-sized region.
+
+An independent calculation yields $r_0 \in [1,18]\,\lpl$ at $t = 0$, growing
+to $r_{\mathrm{now}} \approx 16.7\;\text{Gly}$---matching the cosmological
+event horizon. The boundary tracks the event horizon because it is the future
+causal limit of decoherence events, consistent with dS/$\CFT$. A corollary,
+subject to the caveats of Section~\ref{sec:discussion}, is the exclusion of the
+initial singularity by G1: zero area implies zero information capacity.
+
+The threshold produces a soft power deficit at the largest CMB scales---the
+$\ell \sim 2$--$5$ regime where Planck~2018 shows a $2$--$3\sigma$ anomaly.
+The two accounts ($\LCDM$ cosmic variance vs.\ holographic threshold) make
+distinguishable predictions. If the Planck anomaly is statistical, LiteBIRD
+E-mode data will not show a correlated deficit. If it is a threshold imprint,
+the deficit will persist. The framework commits: the low-$\ell$ deficit deepens
+in polarization, or the holographic threshold interpretation is disfavored.
+LiteBIRD's 2030 launch sets the deadline.
+
+% ── Acknowledgments ───────────────────────────────────────────────────────────
+\section*{Acknowledgments}
+
+The author thanks Professor T.~Takayanagi for discussions on holographic
+entanglement and de~Sitter boundary conditions.
+
+% ── References ────────────────────────────────────────────────────────────────
+\bibliographystyle{unsrtnat}
+
+\begin{thebibliography}{99}
+
+\bibitem{Bekenstein1973}
+J.~D. Bekenstein,
+\emph{Black holes and entropy},
+Phys.\ Rev.\ D \textbf{7}, 2333 (1973).
+
+\bibitem{Hawking1975}
+S.~W. Hawking,
+\emph{Particle creation by black holes},
+Commun.\ Math.\ Phys.\ \textbf{43}, 199 (1975).
+
+\bibitem{RyuTakayanagi2006}
+S.~Ryu and T.~Takayanagi,
+\emph{Holographic derivation of entanglement entropy from the anti-de~Sitter/conformal
+field theory correspondence},
+Phys.\ Rev.\ Lett.\ \textbf{96}, 181602 (2006);
+JHEP \textbf{08}, 045 (2006).
+
+\bibitem{Bousso2002}
+R.~Bousso,
+\emph{The holographic principle},
+Rev.\ Mod.\ Phys.\ \textbf{74}, 825 (2002).
+
+\bibitem{Guth1981}
+A.~H. Guth,
+\emph{Inflationary universe: a possible solution to the horizon and flatness problems},
+Phys.\ Rev.\ D \textbf{23}, 347 (1981).
+
+\bibitem{Linde1982}
+A.~D. Linde,
+\emph{A new inflationary universe scenario},
+Phys.\ Lett.\ B \textbf{108}, 389 (1982).
+
+\bibitem{Planck2020_PS}
+Planck Collaboration,
+\emph{Planck~2018 results. VI.\ Cosmological parameters},
+Astron.\ Astrophys.\ \textbf{641}, A6 (2020).
+
+\bibitem{Planck2020_isotropy}
+Planck Collaboration,
+\emph{Planck~2018 results. VII.\ Isotropy and statistics of the CMB},
+Astron.\ Astrophys.\ \textbf{641}, A7 (2020).
+
+\bibitem{Copi2007}
+C.~J. Copi, D.~Huterer, D.~J. Schwarz, and G.~D. Starkman,
+\emph{Uncorrelated universe: statistical anisotropy and the vanishing angular
+correlation of the cosmic microwave background},
+Phys.\ Rev.\ D \textbf{75}, 023507 (2007).
+
+\bibitem{MartinBrandenberger2001}
+J.~Martin and R.~H. Brandenberger,
+\emph{Trans-Planckian problem of inflationary cosmology},
+Phys.\ Rev.\ D \textbf{63}, 123501 (2001).
+
+\bibitem{Danielsson2002}
+U.~H. Danielsson,
+\emph{Note on inflation and trans-Planckian physics},
+Phys.\ Rev.\ D \textbf{66}, 023511 (2002).
+
+\bibitem{Kaloper2002}
+N.~Kaloper, M.~Kleban, A.~E. Lawrence, and S.~Shenker,
+\emph{Signatures of short distance physics in the cosmic microwave background},
+Phys.\ Rev.\ D \textbf{66}, 123510 (2002).
+
+\bibitem{Contaldi2003}
+C.~R. Contaldi, M.~Peloso, L.~Kofman, and A.~Linde,
+\emph{Suppressing the lower multipoles in the CMB anisotropies},
+JCAP \textbf{0307}, 002 (2003).
+
+\bibitem{Rajaraman2008}
+B.~Rajaraman,
+\emph{On the correct treatment of ex nihilo production in inflation},
+Phys.\ Rev.\ D \textbf{78}, 043533 (2008).
+
+\bibitem{HollandsWald2002}
+S.~Hollands and R.~M. Wald,
+\emph{Comment on inflation and alternative cosmology},
+Gen.\ Rel.\ Grav.\ \textbf{34}, 2043 (2002).
+
+\bibitem{LiteBIRD2023}
+LiteBIRD Collaboration,
+\emph{LiteBIRD science goals and forecasts},
+PTEP \textbf{2023}, 042F01 (2023).
+
+\bibitem{CMBS4}
+CMB-S4 Collaboration,
+\emph{CMB-S4 science book, first edition},
+arXiv:1610.02743 (2016).
+
+\bibitem{VanRaamsdonk2010}
+M.~Van Raamsdonk,
+\emph{Building up spacetime with quantum entanglement},
+Gen.\ Rel.\ Grav.\ \textbf{42}, 2323 (2010).
+
+\bibitem{Maldacena2003}
+J.~M. Maldacena,
+\emph{Non-Gaussian perturbations in inflation},
+JHEP \textbf{0305}, 013 (2003).
+
+\bibitem{Strominger2001}
+A.~Strominger,
+\emph{The dS/CFT correspondence},
+JHEP \textbf{0110}, 034 (2001).
+
+\bibitem{SusskindLindesay2005}
+L.~Susskind and J.~Lindesay,
+\emph{An Introduction to Black Holes, Information and the String Theory Revolution},
+World Scientific (2005).
+
+\bibitem{Bousso1999}
+R.~Bousso,
+\emph{A covariant entropy conjecture},
+JHEP \textbf{9907}, 004 (1999).
+
+\bibitem{HartleHawking1983}
+J.~B. Hartle and S.~W. Hawking,
+\emph{Wave function of the universe},
+Phys.\ Rev.\ D \textbf{28}, 2960 (1983).
+
+\bibitem{Bojowald2001}
+M.~Bojowald,
+\emph{Absence of a singularity in loop quantum cosmology},
+Phys.\ Rev.\ Lett.\ \textbf{86}, 5227 (2001).
+
+\bibitem{Ashtekar2006}
+A.~Ashtekar, T.~Pawlowski, and P.~Singh,
+\emph{Quantum nature of the Big Bang},
+Phys.\ Rev.\ Lett.\ \textbf{96}, 141301 (2006).
+
+\end{thebibliography}
+
+\end{document}
